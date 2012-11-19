@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://eu-emi.eu/namespaces/2012/10/aggregatedcomputerecord"
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:urf="http://eu-emi.eu/namespaces/2012/10/computerecord" xmlns:aur="http://eu-emi.eu/namespaces/2012/10/aggregatedcomputerecord">
+
+	<import schemaLocation="car_v1.1.xsd"
+		namespace="http://eu-emi.eu/namespaces/2012/10/computerecord"></import>
+	<element name="SummaryRecord" type="aur:SummaryRecordType"></element>
+
+	<complexType name="SummaryRecordType">
+		<sequence>
+		  <element name="Site" type="urf:SiteType" maxOccurs="1"
+		    minOccurs="1">
+		  </element>
+		  <element name="Month" maxOccurs="1" minOccurs="1">
+		    <simpleType>
+		      <restriction base="int">
+		        <minInclusive value="1"></minInclusive>
+		        <maxInclusive value="12"></maxInclusive>
+		      </restriction>
+		    </simpleType>
+		  </element>
+		  <element name="Year" maxOccurs="1" minOccurs="1">
+		    <simpleType>
+		      <restriction base="int">
+		        <pattern value="\d\d\d\d"></pattern>
+		      </restriction>
+		    </simpleType>
+		  </element>
+		  <element name="UserIdentity"
+		    type="aur:UserIdentityAggregateType">
+		  </element>
+		  <element name="MachineName" type="urf:MachineNameComplexType" minOccurs="0" maxOccurs="1"></element>
+		  <element name="SubmitHost" type="string" minOccurs="0"
+		    maxOccurs="1" />
+		  <element name="Host" type="aur:HostAggregateType"
+		    minOccurs="0" maxOccurs="1">
+		  </element>
+		  <element name="Queue" type="urf:QueueComplexType"
+		    minOccurs="0" maxOccurs="1">
+		  </element>
+		  <element name="Infrastructure" type="urf:InfrastructureType"
+		    minOccurs="1" maxOccurs="1" />
+		  <element name="Middleware" type="urf:MiddlewareType"
+		    minOccurs="0" maxOccurs="1">
+		  </element>
+		  <element name="EarliestEndTime" type="dateTime"></element>
+		  <element name="LatestEndTime" type="dateTime"></element>
+		  <element name="WallDuration" type="duration" maxOccurs="1"
+		    minOccurs="1">
+		  </element>
+		  <element name="CpuDuration" type="duration" maxOccurs="1"
+		    minOccurs="1">
+		  </element>
+		  <element name="ServiceLevel" type="aur:ServiceLevelType"
+		    maxOccurs="1" minOccurs="1">
+		  </element>
+		  <element name="NumberOfJobs" type="integer" maxOccurs="1"
+		    minOccurs="1">
+		  </element>
+		  <element name="Memory" type="urf:MemoryComplexType"
+		    minOccurs="0" maxOccurs="unbounded">
+		  </element>
+		  <element name="Swap" type="urf:MemoryComplexType"
+		    minOccurs="0" maxOccurs="1">
+		  </element>
+		  <element name="NodeCount" type="urf:NodeCountComplexType"
+		    minOccurs="0" maxOccurs="1">
+		  </element>
+		  <element name="Processors" type="urf:ProcessorsComplexType"
+		    minOccurs="0" maxOccurs="1">
+		  </element>
+		</sequence>
+	</complexType>
+
+	<element name="SummaryRecords" type="aur:SummaryRecordsType"></element>
+
+	<complexType name="SummaryRecordsType">
+		<sequence>
+			<element name="SummaryRecord" type="aur:SummaryRecordType"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="UserIdentityAggregateType">
+		<complexContent>
+			<extension base="urf:UserIdentityBaseType"></extension>
+		</complexContent>
+	</complexType>
+  
+  <complexType name="HostAggregateType">
+    <simpleContent>
+      <extension base="urf:HostBaseType">
+        <attribute default="true" name="primary"
+          type="boolean">
+        </attribute>
+      </extension>
+    </simpleContent>
+  </complexType>
+  
+  <complexType name="ServiceLevelType">
+    <complexContent>
+      <extension base="urf:ServiceLevelType"></extension>
+    </complexContent>
+  </complexType>
+  
+</schema>

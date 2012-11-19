@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema attributeFormDefault="qualified"
+  elementFormDefault="qualified" targetNamespace="http://eu-emi.eu/namespaces/2012/10/computerecord"
+  xmlns:urf="http://eu-emi.eu/namespaces/2012/10/computerecord"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <xsd:annotation>
+    <xsd:documentation xml:lang="en">EMI Compute Accounting
+      Record Working Group XML Schema definition V1.1
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType name="UsageRecordType">
+    <xsd:sequence maxOccurs="1" minOccurs="1">
+      <xsd:element maxOccurs="1" minOccurs="1"
+        ref="urf:RecordIdentity" />
+      <xsd:element maxOccurs="1" minOccurs="1" ref="urf:JobIdentity" />
+      <xsd:element maxOccurs="1" minOccurs="1"
+        ref="urf:UserIdentity" />
+      <xsd:element maxOccurs="1" minOccurs="0" ref="urf:JobName" />
+      <xsd:element maxOccurs="1" minOccurs="0" ref="urf:Charge" />
+      <xsd:element maxOccurs="1" minOccurs="1" ref="urf:Status" />
+      <xsd:element name="ExitStatus" type="xsd:int"
+        maxOccurs="1" minOccurs="0">
+      </xsd:element>
+
+      <xsd:element maxOccurs="1" minOccurs="1"
+        ref="urf:Infrastructure"></xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0"
+        ref="urf:Middleware">
+      </xsd:element>
+      <xsd:sequence maxOccurs="1" minOccurs="1">
+        <xsd:element maxOccurs="1" minOccurs="1"
+          ref="urf:WallDuration" />
+        <xsd:sequence maxOccurs="unbounded" minOccurs="1">
+          <xsd:element maxOccurs="unbounded" minOccurs="1"
+            ref="urf:CpuDuration" />
+        </xsd:sequence>
+        <xsd:element ref="urf:ServiceLevel" maxOccurs="unbounded"
+          minOccurs="1" />
+        <xsd:element ref="urf:Memory" maxOccurs="unbounded"
+          minOccurs="0" />
+        <xsd:element ref="urf:Swap" maxOccurs="1" minOccurs="0" />
+        <xsd:element ref="urf:TimeInstant" maxOccurs="unbounded"
+          minOccurs="0">
+          <xsd:annotation>
+            <xsd:documentation>
+              Type for time instant that SHOULD be present
+              and treated by accounting services: Ctime -
+              Time job was created. Qtime - Time job was
+              queued. Etime - Time job became eligible to
+              run.
+						</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element maxOccurs="1" minOccurs="0" ref="urf:NodeCount" />
+        <xsd:element maxOccurs="1" minOccurs="0"
+          ref="urf:Processors" />
+        <xsd:element maxOccurs="1" minOccurs="1" ref="urf:EndTime" />
+        <xsd:element maxOccurs="1" minOccurs="1" ref="urf:StartTime" />
+        <xsd:element maxOccurs="1" minOccurs="1"
+          ref="urf:MachineName">
+          <xsd:annotation>
+            <xsd:documentation>
+              This SHOULD be the LRMS server host name.
+						</xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+        <xsd:element maxOccurs="1" minOccurs="0"
+          ref="urf:SubmitHost" />
+        <xsd:element maxOccurs="unbounded" minOccurs="1"
+          ref="urf:Queue" />
+        <xsd:element name="Site" type="urf:SiteType"
+          maxOccurs="unbounded" minOccurs="1">
+        </xsd:element>
+        <xsd:sequence maxOccurs="1" minOccurs="0">
+          <xsd:element maxOccurs="unbounded" minOccurs="0"
+            ref="urf:ProjectName" />
+        </xsd:sequence>
+        <xsd:sequence maxOccurs="1" minOccurs="0">
+          <xsd:element maxOccurs="unbounded" minOccurs="0"
+            ref="urf:Host" />
+        </xsd:sequence>
+        <xsd:sequence maxOccurs="1" minOccurs="0">
+          <xsd:choice maxOccurs="unbounded" minOccurs="0">
+            <xsd:element ref="urf:PhaseResource" />
+            <xsd:element ref="urf:VolumeResource" />
+            <xsd:element ref="urf:Resource" />
+            <xsd:element ref="urf:ConsumableResource" />
+          </xsd:choice>
+        </xsd:sequence>
+      </xsd:sequence>
+
+      <xsd:element ref="urf:Charge"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element abstract="true" name="Usage" type="urf:UsageRecordType" />
+  <xsd:element name="UsageRecord" substitutionGroup="urf:Usage"
+    type="urf:UsageRecordType" />
+  <xsd:element name="UsageRecords">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="unbounded" minOccurs="0"
+          ref="urf:Usage" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <!-- Common properties that may be measured with several different metrics 
+    within the same usage record -->
+  <xsd:element name="Network">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:positiveInteger">
+          <xsd:attribute ref="urf:description" use="optional" />
+          <xsd:attributeGroup ref="urf:intervallicVolume" />
+          <xsd:attribute default="total" ref="urf:metric"
+            use="optional" />
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Memory" type="urf:MemoryComplexType">
+  </xsd:element>
+  <xsd:element name="Swap" type="urf:MemoryComplexType">
+  </xsd:element>
+  <xsd:element name="NodeCount" type="urf:NodeCountComplexType">
+  </xsd:element>
+  <xsd:element name="Processors" type="urf:ProcessorsComplexType">
+  </xsd:element>
+  <xsd:element name="TimeDuration">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:duration">
+          <xsd:attribute ref="urf:type" use="optional" />
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="TimeInstant">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:dateTime">
+          <xsd:attribute ref="urf:type" use="optional" />
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="ServiceLevel" type="urf:ServiceLevelType">
+  </xsd:element>
+  <!-- This element should appear at most twice within a usage record, with 
+    differing values for usageType for each appearance -->
+  <xsd:element name="CpuDuration">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:duration">
+          <xsd:attribute ref="urf:description" use="optional" />
+          <xsd:attribute name="usageType" default="all">
+            <xsd:annotation>
+              <xsd:documentation>usageType="all" (sum of system and
+                user) MUST
+                be present in the record</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleType>
+              <xsd:restriction base="xsd:token">
+                <xsd:enumeration value="user" />
+                <xsd:enumeration value="system" />
+                <xsd:enumeration value="all" />
+              </xsd:restriction>
+            </xsd:simpleType>
+          </xsd:attribute>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <!-- These common properties should appear at most once within a usage 
+    record, rather that at most once per metric per usage record -->
+  <xsd:element name="WallDuration">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:duration">
+          <xsd:attribute ref="urf:description" use="optional" />
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="EndTime">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:dateTime">
+          <xsd:attribute ref="urf:description" use="optional" />
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="StartTime">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:dateTime">
+          <xsd:attribute ref="urf:description" use="optional" />
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="MachineName" type="urf:MachineNameComplexType">
+  </xsd:element>
+  <xsd:element name="SubmitHost" type="xsd:string">
+
+    <xsd:annotation>
+      <xsd:documentation>In grid environment this refers to the CE Host
+        This element MUST be rpesent for grid jobs. This Element MUST
+        NOT be present for local jobs </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="Host" type="urf:HostComplexType">
+  </xsd:element>
+  <xsd:element name="Queue" type="urf:QueueComplexType">
+  </xsd:element>
+  <xsd:element name="JobName">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+          <xsd:attribute ref="urf:description" use="optional" />
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="ProjectName">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+          <xsd:attribute ref="urf:description" use="optional" />
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="Status" type="urf:statusType">
+    <xsd:annotation>
+      <xsd:documentation>
+        Minimum required set = {Aborted, Completed, Failed,
+        Held, Queued, Started, Suspended}
+			</xsd:documentation>
+    </xsd:annotation>
+
+  </xsd:element>
+  <xsd:element name="Charge">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:float">
+          <xsd:attribute ref="urf:description" use="optional" />
+          <xsd:attribute ref="urf:unit" use="optional" />
+          <xsd:attribute name="formula" type="xsd:string"
+            use="optional" />
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+  <!-- identity elements -->
+  <xsd:element name="JobIdentity">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="1" minOccurs="0" name="GlobalJobId"
+          type="xsd:string" />
+        <xsd:element maxOccurs="1" minOccurs="1" name="LocalJobId"
+          type="xsd:string" />
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0"
+            ref="urf:ProcessId" />
+        </xsd:sequence>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="RecordIdentity">
+    <xsd:complexType>
+      <xsd:annotation>
+        <xsd:documentation>This is the place where to insert the
+          effective
+          User VirtualOrganization </xsd:documentation>
+      </xsd:annotation>
+      <xsd:attribute name="recordId" type="xsd:token" use="required" />
+      <xsd:attribute name="createTime" type="xsd:dateTime"
+        use="required" />
+    </xsd:complexType>
+  </xsd:element>
+  <!-- Extensibility Framework -->
+  <xsd:element name="Resource" type="urf:ResourceType" />
+  <xsd:element name="ConsumableResource" type="urf:ConsumableResourceType" />
+  <xsd:element name="PhaseResource">
+    <xsd:complexType>
+      <xsd:complexContent>
+        <xsd:extension base="urf:ConsumableResourceType">
+          <xsd:attribute ref="urf:phaseUnit" use="optional" />
+        </xsd:extension>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="VolumeResource">
+    <xsd:complexType>
+      <xsd:complexContent>
+        <xsd:extension base="urf:ConsumableResourceType">
+          <xsd:attribute ref="urf:storageUnit" use="optional" />
+        </xsd:extension>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+  <!-- Create a generic consumable resource. Carries the units attribute -->
+  <xsd:complexType name="ConsumableResourceType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:float">
+        <xsd:attribute name="units" type="xsd:string" use="optional" />
+        <xsd:attribute ref="urf:description" use="optional" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <!-- Create a generic resource type -->
+  <xsd:complexType name="ResourceType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute ref="urf:description" use="optional" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <!-- Global Attribute Definitions -->
+  <xsd:attribute name="description" type="xsd:string" />
+  <!-- Units of measure attribute definitions -->
+  <xsd:attribute name="unit" type="xsd:token" />
+  <xsd:attribute name="storageUnit">
+    <xsd:simpleType>
+      <xsd:restriction base="xsd:token">
+        <xsd:enumeration value="b" />
+        <xsd:enumeration value="B" />
+        <xsd:enumeration value="KB" />
+        <xsd:enumeration value="MB" />
+        <xsd:enumeration value="GB" />
+        <xsd:enumeration value="PB" />
+        <xsd:enumeration value="EB" />
+        <xsd:enumeration value="Kb" />
+        <xsd:enumeration value="Mb" />
+        <xsd:enumeration value="Gb" />
+        <xsd:enumeration value="Pb" />
+        <xsd:enumeration value="Eb" />
+      </xsd:restriction>
+    </xsd:simpleType>
+  </xsd:attribute>
+  <xsd:attribute name="phaseUnit" type="xsd:duration" />
+  <xsd:attributeGroup name="intervallicVolume">
+    <xsd:attribute ref="urf:storageUnit" use="optional" />
+    <xsd:attribute ref="urf:phaseUnit" use="optional" />
+  </xsd:attributeGroup>
+  <!-- End units attributes -->
+  <xsd:attribute name="metric" type="xsd:token" />
+  <xsd:attribute name="type" type="xsd:token" />
+  <!-- Simple type definitions used to constrain values of attributes -->
+  <xsd:simpleType name="domainNameType">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern
+        value="([a-zA-Z0-9][a-zA-Z0-9'\-']*[a-zA-Z0-9]\.)*([a-zA-Z0-9][a-zA-Z0-9'\-']*[a-zA-Z0-9])?" />
+      <xsd:maxLength value="255" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="GroupAttributeType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="type" type="xsd:string"></xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SiteType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="type" type="xsd:string"
+          default="gocdb" use="optional"></xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="InfrastructureType">
+    <xsd:attribute name="description" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="type" default="grid">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="grid"></xsd:enumeration>
+          <xsd:enumeration value="local"></xsd:enumeration>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="Infrastructure" type="urf:InfrastructureType"></xsd:element>
+
+  <xsd:complexType name="MiddlewareType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="name" type="xsd:string" use="required" />
+        <xsd:attribute name="version" type="xsd:string"
+          use="optional" />
+        <xsd:attribute name="description" type="xsd:string"
+          use="optional" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:element name="Middleware" type="urf:MiddlewareType"></xsd:element>
+
+
+
+  <xsd:complexType name="UserIdentityBaseType">
+    <xsd:sequence>
+      <!-- <xsd:element minOccurs="1" maxOccurs="1" name="LocalUserId" type="xsd:string"> 
+        </xsd:element> -->
+      <xsd:element minOccurs="0" maxOccurs="1" name="GlobalUserName"
+        type="urf:CertificateDnType">
+        <xsd:annotation>
+          <xsd:documentation>
+            Certificate DNs MUST be represented following RFC 2253 or opensslCompat
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+
+      <xsd:element minOccurs="0" maxOccurs="1" name="Group"
+        type="xsd:string">
+      </xsd:element>
+      <xsd:sequence maxOccurs="unbounded" minOccurs="0">
+        <xsd:element minOccurs="0" maxOccurs="unbounded"
+          name="GroupAttribute" type="urf:GroupAttributeType">
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:sequence>
+  </xsd:complexType>
+
+
+
+  <xsd:complexType name="UserIdentityType">
+    <xsd:complexContent>
+      <xsd:extension base="urf:UserIdentityBaseType">
+        <xsd:sequence>
+          <xsd:element name="LocalUserId" type="xsd:string"
+            maxOccurs="1" minOccurs="1">
+          </xsd:element>
+          <xsd:element name="LocalGroup" type="xsd:string"
+            maxOccurs="1" minOccurs="0"></xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="UserIdentity" type="urf:UserIdentityType">
+  </xsd:element>
+
+
+  <xsd:simpleType name="statusType">
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="aborted"></xsd:enumeration>
+      <xsd:enumeration value="completed"></xsd:enumeration>
+      <xsd:enumeration value="failed"></xsd:enumeration>
+      <xsd:enumeration value="held"></xsd:enumeration>
+      <xsd:enumeration value="queued"></xsd:enumeration>
+      <xsd:enumeration value="started"></xsd:enumeration>
+      <xsd:enumeration value="suspended"></xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <xsd:complexType name="ServiceLevelType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:float">
+        <xsd:attribute use="required" ref="urf:type">
+          <xsd:annotation></xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute use="optional" ref="urf:description">
+          <xsd:annotation></xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="MemoryComplexType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:positiveInteger">
+        <xsd:attribute use="optional" ref="urf:description"></xsd:attribute>
+        <xsd:attributeGroup ref="urf:intervallicVolume"></xsd:attributeGroup>
+        <xsd:attribute use="optional" default="total"
+          ref="urf:metric">
+        </xsd:attribute>
+        <xsd:attribute use="required" ref="urf:type"></xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="NodeCountComplexType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:positiveInteger">
+        <xsd:attribute use="optional" ref="urf:description"></xsd:attribute>
+        <xsd:attribute use="optional" default="total"
+          ref="urf:metric">
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="ProcessorsComplexType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:positiveInteger">
+        <xsd:attribute use="optional" ref="urf:description"></xsd:attribute>
+        <xsd:attribute use="optional" ref="urf:metric"></xsd:attribute>
+        <xsd:attribute use="optional" name="consumptionRate"
+          type="xsd:float">
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="QueueComplexType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute use="optional" default="execution"
+          ref="urf:description">
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="HostComplexType">
+    <xsd:simpleContent>
+      <xsd:extension base="urf:HostBaseType">
+        <xsd:attribute default="false" name="primary"
+          type="xsd:boolean">
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="HostBaseType">
+    <xsd:simpleContent>
+      <xsd:extension base="urf:domainNameType">
+        <xsd:attribute use="optional" ref="urf:description"></xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="MachineNameComplexType">
+    <xsd:simpleContent>
+      <xsd:extension base="urf:domainNameType">
+        <xsd:attribute use="optional" ref="urf:description"></xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CertificateDnType">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute use="required" name="type">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="opensslCompat"></xsd:enumeration>
+              <xsd:enumeration value="rfc2253"></xsd:enumeration>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  
+  <xsd:element name="ProcessId" type="urf:ProcessIdType"></xsd:element>
+
+  <xsd:complexType name="ProcessIdType">
+
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:long">
+        <xsd:attribute name="Host" type="urf:domainNameType"
+          use="optional">
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+</xsd:schema>
