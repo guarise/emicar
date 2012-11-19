@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aur:SummaryRecord xmlns:aur="http://eu-emi.eu/namespaces/2012/10/aggregatedcomputerecord" xmlns:urf="http://eu-emi.eu/namespaces/2012/10/computerecord" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://eu-emi.eu/namespaces/2012/10/aggregatedcomputerecord ../org.glite.dgas_B_4_0_0/config-consumers/car_aggregated_v1.1.xsd ">
+  <aur:Site urf:type="gocdb">aur:Site</aur:Site>
+  <aur:Month>0</aur:Month>
+  <aur:Year>0</aur:Year>
+  <aur:UserIdentity>
+    <urf:GlobalUserName urf:type="opensslCompat">urf:GlobalUserName</urf:GlobalUserName>
+    <urf:Group>urf:Group</urf:Group>
+    <urf:GroupAttribute urf:type="">urf:GroupAttribute</urf:GroupAttribute>
+  </aur:UserIdentity>
+  <aur:MachineName urf:description="">aur:MachineName</aur:MachineName>
+  <aur:SubmitHost>aur:SubmitHost</aur:SubmitHost>
+  <aur:Host primary="true" urf:description="">aur:Host</aur:Host>
+  <aur:Queue urf:description="execution">aur:Queue</aur:Queue>
+  <aur:Infrastructure urf:description="" urf:type="grid"/>
+  <aur:Middleware urf:description="" urf:name="" urf:version="">aur:Middleware</aur:Middleware>
+  <aur:EarliestEndTime>2001-12-31T12:00:00</aur:EarliestEndTime>
+  <aur:LatestEndTime>2001-12-31T12:00:00</aur:LatestEndTime>
+  <aur:WallDuration>P1D</aur:WallDuration>
+  <aur:CpuDuration>P1D</aur:CpuDuration>
+  <aur:ServiceLevel urf:description="" urf:type="token">0.0</aur:ServiceLevel>
+  <aur:NumberOfJobs>0</aur:NumberOfJobs>
+  <aur:Memory urf:description="" urf:metric="total" urf:phaseUnit="P1D" urf:storageUnit="b" urf:type="token">1</aur:Memory>
+  <aur:Swap urf:description="" urf:metric="total" urf:phaseUnit="P1D" urf:storageUnit="b" urf:type="token">1</aur:Swap>
+  <aur:NodeCount urf:description="" urf:metric="total">1</aur:NodeCount>
+  <aur:Processors urf:consumptionRate="0.0" urf:description="" urf:metric="token">1</aur:Processors>
+</aur:SummaryRecord>

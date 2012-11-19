@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urf:UsageRecord xmlns:urf="http://eu-emi.eu/namespaces/2012/10/computerecord" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://eu-emi.eu/namespaces/2012/10/computerecord ../org.glite.dgas_B_4_0_0/config-consumers/car_v1.1.xsd ">
+  <urf:RecordIdentity urf:createTime="2001-12-31T12:00:00" urf:recordId="token"/>
+  <urf:JobIdentity>
+    <urf:GlobalJobId>urf:GlobalJobId</urf:GlobalJobId>
+    <urf:LocalJobId>urf:LocalJobId</urf:LocalJobId>
+    <urf:ProcessId urf:Host="">0</urf:ProcessId>
+  </urf:JobIdentity>
+  <urf:UserIdentity>
+    <urf:GlobalUserName urf:type="opensslCompat">urf:GlobalUserName</urf:GlobalUserName>
+    <urf:Group>urf:Group</urf:Group>
+    <urf:GroupAttribute urf:type="">urf:GroupAttribute</urf:GroupAttribute>
+    <urf:LocalUserId>urf:LocalUserId</urf:LocalUserId>
+    <urf:LocalGroup>urf:LocalGroup</urf:LocalGroup>
+  </urf:UserIdentity>
+  <urf:JobName urf:description="">urf:JobName</urf:JobName>
+  <urf:Charge urf:description="" urf:formula="" urf:unit="token">0.0</urf:Charge>
+  <urf:Status>aborted</urf:Status>
+  <urf:ExitStatus>0</urf:ExitStatus>
+  <urf:Infrastructure urf:description="" urf:type="grid"/>
+  <urf:Middleware urf:description="" urf:name="" urf:version="">urf:Middleware</urf:Middleware>
+  <urf:WallDuration urf:description="">P1D</urf:WallDuration>
+  <urf:CpuDuration urf:description="" urf:usageType="all">P1D</urf:CpuDuration>
+  <urf:ServiceLevel urf:description="" urf:type="token">0.0</urf:ServiceLevel>
+  <urf:Memory urf:description="" urf:metric="total" urf:phaseUnit="P1D" urf:storageUnit="b" urf:type="token">1</urf:Memory>
+  <urf:Swap urf:description="" urf:metric="total" urf:phaseUnit="P1D" urf:storageUnit="b" urf:type="token">1</urf:Swap>
+  <urf:TimeInstant urf:type="token">2001-12-31T12:00:00</urf:TimeInstant>
+  <urf:NodeCount urf:description="" urf:metric="total">1</urf:NodeCount>
+  <urf:Processors urf:consumptionRate="0.0" urf:description="" urf:metric="token">1</urf:Processors>
+  <urf:EndTime urf:description="">2001-12-31T12:00:00</urf:EndTime>
+  <urf:StartTime urf:description="">2001-12-31T12:00:00</urf:StartTime>
+  <urf:MachineName urf:description="">urf:MachineName</urf:MachineName>
+  <urf:SubmitHost>urf:SubmitHost</urf:SubmitHost>
+  <urf:Queue urf:description="execution">urf:Queue</urf:Queue>
+  <urf:Site urf:type="gocdb">urf:Site</urf:Site>
+  <urf:Host urf:description="" urf:primary="false">urf:Host</urf:Host>
+  <urf:PhaseResource urf:description="" urf:phaseUnit="P1D" urf:units="">0.0</urf:PhaseResource>
+</urf:UsageRecord>
