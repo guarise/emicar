@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xsd:schema attributeFormDefault="qualified"
-  elementFormDefault="qualified" targetNamespace="http://eu-emi.eu/namespaces/2012/10/computerecord"
-  xmlns:urf="http://eu-emi.eu/namespaces/2012/10/computerecord"
+  elementFormDefault="qualified" targetNamespace="http://eu-emi.eu/namespaces/2012/11/computerecord"
+  xmlns:urf="http://eu-emi.eu/namespaces/2012/11/computerecord"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <xsd:annotation>
     <xsd:documentation xml:lang="en">EMI Compute Accounting
-      Record Working Group XML Schema definition V1.1
+      Record Working Group XML Schema definition V1.2
     </xsd:documentation>
   </xsd:annotation>
   <xsd:complexType name="UsageRecordType">
@@ -70,11 +70,7 @@
           ref="urf:Queue" />
         <xsd:element name="Site" type="urf:SiteType"
           maxOccurs="unbounded" minOccurs="1">
-        </xsd:element>
-        <xsd:sequence maxOccurs="1" minOccurs="0">
-          <xsd:element maxOccurs="unbounded" minOccurs="0"
-            ref="urf:ProjectName" />
-        </xsd:sequence>
+        </xsd:element>
         <xsd:sequence maxOccurs="1" minOccurs="0">
           <xsd:element maxOccurs="unbounded" minOccurs="0"
             ref="urf:Host" />
@@ -89,7 +85,6 @@
         </xsd:sequence>
       </xsd:sequence>
 
-      <xsd:element ref="urf:Charge"></xsd:element>
     </xsd:sequence>
   </xsd:complexType>
   <xsd:element abstract="true" name="Usage" type="urf:UsageRecordType" />
@@ -104,19 +99,7 @@
     </xsd:complexType>
   </xsd:element>
   <!-- Common properties that may be measured with several different metrics 
-    within the same usage record -->
-  <xsd:element name="Network">
-    <xsd:complexType>
-      <xsd:simpleContent>
-        <xsd:extension base="xsd:positiveInteger">
-          <xsd:attribute ref="urf:description" use="optional" />
-          <xsd:attributeGroup ref="urf:intervallicVolume" />
-          <xsd:attribute default="total" ref="urf:metric"
-            use="optional" />
-        </xsd:extension>
-      </xsd:simpleContent>
-    </xsd:complexType>
-  </xsd:element>
+    within the same usage record -->
   <xsd:element name="Memory" type="urf:MemoryComplexType">
   </xsd:element>
   <xsd:element name="Swap" type="urf:MemoryComplexType">
@@ -221,16 +204,7 @@
         </xsd:extension>
       </xsd:simpleContent>
     </xsd:complexType>
-  </xsd:element>
-  <xsd:element name="ProjectName">
-    <xsd:complexType>
-      <xsd:simpleContent>
-        <xsd:extension base="xsd:string">
-          <xsd:attribute ref="urf:description" use="optional" />
-        </xsd:extension>
-      </xsd:simpleContent>
-    </xsd:complexType>
-  </xsd:element>
+  </xsd:element>
   <xsd:element name="Status" type="urf:statusType">
     <xsd:annotation>
       <xsd:documentation>

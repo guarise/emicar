@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema targetNamespace="http://eu-emi.eu/namespaces/2012/10/aggregatedcomputerecord"
+<schema targetNamespace="http://eu-emi.eu/namespaces/2012/11/aggregatedcomputerecord"
 	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
-	xmlns:urf="http://eu-emi.eu/namespaces/2012/10/computerecord" xmlns:aur="http://eu-emi.eu/namespaces/2012/10/aggregatedcomputerecord">
+	xmlns:urf="http://eu-emi.eu/namespaces/2012/11/computerecord" xmlns:aur="http://eu-emi.eu/namespaces/2012/11/aggregatedcomputerecord">
 
-	<import schemaLocation="car_v1.1.xsd"
-		namespace="http://eu-emi.eu/namespaces/2012/10/computerecord"></import>
+	<import schemaLocation="car_v1.2.xsd"
+		namespace="http://eu-emi.eu/namespaces/2012/11/computerecord"></import>
 	<element name="SummaryRecord" type="aur:SummaryRecordType"></element>
 
 	<complexType name="SummaryRecordType">
