@@ -18,7 +18,7 @@ help:
 test: $(ALL_VALIDATED)
 
 %.ok : % $(CAR_XSD_FORM)
-	( @xmllint --noout --schema $(CAR_XSD_FORM) $< || @xmllint --noout --schema $(CAR_XSD_AGGREGATED_FORM) $< ) && touch $@
+	@( xmllint --noout --schema $(CAR_XSD_FORM) $< || xmllint --noout --schema $(CAR_XSD_AGGREGATED_FORM) $< ) && touch $@
 
 testclean:
 	rm -f $(ALL_VALIDATED)
