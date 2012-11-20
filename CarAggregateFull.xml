@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<aur:SummaryRecord xmlns:aur="http://eu-emi.eu/namespaces/2012/10/aggregatedcomputerecord" xmlns:urf="http://eu-emi.eu/namespaces/2012/10/computerecord" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://eu-emi.eu/namespaces/2012/10/aggregatedcomputerecord ../org.glite.dgas_B_4_0_0/config-consumers/car_aggregated_v1.1.xsd ">
+<aur:SummaryRecord xmlns:aur="http://eu-emi.eu/namespaces/2012/11/aggregatedcomputerecord" xmlns:urf="http://eu-emi.eu/namespaces/2012/11/computerecord" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://eu-emi.eu/namespaces/2012/11/aggregatedcomputerecord ../org.glite.dgas_B_4_0_0/config-consumers/car_aggregated_v1.2.xsd ">
   <aur:Site urf:type="gocdb">aur:Site</aur:Site>
   <aur:Month>0</aur:Month>
   <aur:Year>0</aur:Year>
