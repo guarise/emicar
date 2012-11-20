@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urf:UsageRecord xmlns:urf="http://eu-emi.eu/namespaces/2012/10/computerecord" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://eu-emi.eu/namespaces/2012/10/computerecord ../org.glite.dgas_B_4_0_0/config-consumers/car_v1.1.xsd ">
+<urf:UsageRecord xmlns:urf="http://eu-emi.eu/namespaces/2012/11/computerecord" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://eu-emi.eu/namespaces/2012/11/computerecord car_v1.2.xsd ">
   <urf:RecordIdentity urf:createTime="2001-12-31T12:00:00" urf:recordId="token"/>
   <urf:JobIdentity>
     <urf:GlobalJobId>urf:GlobalJobId</urf:GlobalJobId>
