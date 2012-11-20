@@ -29,10 +29,10 @@
   <urf:Processors urf:consumptionRate="0.0" urf:description="" urf:metric="token">1</urf:Processors>
   <urf:EndTime urf:description="">2001-12-31T12:00:00</urf:EndTime>
   <urf:StartTime urf:description="">2001-12-31T12:00:00</urf:StartTime>
-  <urf:MachineName urf:description="">urf:MachineName</urf:MachineName>
+  <urf:MachineName urf:description="">host.domain</urf:MachineName>
   <urf:SubmitHost>urf:SubmitHost</urf:SubmitHost>
   <urf:Queue urf:description="execution">urf:Queue</urf:Queue>
   <urf:Site urf:type="gocdb">urf:Site</urf:Site>
-  <urf:Host urf:description="" urf:primary="false">urf:Host</urf:Host>
+  <urf:Host urf:description="" urf:primary="false">host.domain</urf:Host>
   <urf:PhaseResource urf:description="" urf:phaseUnit="P1D" urf:units="">0.0</urf:PhaseResource>
 </urf:UsageRecord>
