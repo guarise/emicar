@@ -33,8 +33,7 @@ clean: testclean
 
 release: $(release_filename:%=%.gz)
 	@echo ""
-	@echo " Release $(VERSION) available as $<"
-	@echo
+	@echo " Release $(VERSION) available as $<"	@echo
 
 $(release_filename:%=%.gz) : $(release_filename)
 	gzip $<
