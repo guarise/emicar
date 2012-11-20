@@ -3,6 +3,7 @@ ALL_SAMPLES := $(wildcard *.xml) $(wildcard *.xml.gz)
 ALL_VALIDATED = $(ALL_SAMPLES:%=%.ok)
 VERSION = $(shell cat VERSION)
 CAR_XSD_FORM = car_v1.2.xsd
+CAR_XSD_AGGREGATED_FORM = ar_aggregated_v1.2.xsd
 release_filename = /tmp/carval-$(VERSION).tar
 
 help:
@@ -10,18 +11,14 @@ help:
 	@echo ""
 	@echo "Targets:"	
 	@echo "   test      --  run samples against schema"
-	@echo "   testaggregate   --  run samples against aggregate schema"
 	@echo "   testclean --  remove generated files"
 	@echo "   clean     --  remove generated files and old backups"
 	@echo "   release   --  create a tar.gz file from current repository"
 
-testaggregate:
-	$(MAKE) test CAR_XSD_FORM=car_aggregated_v1.2.xsd 
-
 test: $(ALL_VALIDATED)
 
 %.ok : % $(CAR_XSD_FORM)
-	@xmllint --noout --schema $(CAR_XSD_FORM) $< && touch $@
+	( @xmllint --noout --schema $(CAR_XSD_FORM) $< || @xmllint --noout --schema $(CAR_XSD_AGGREGATED_FORM) $< ) && touch $@
 
 testclean:
 	rm -f $(ALL_VALIDATED)
