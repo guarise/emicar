@@ -17,11 +17,16 @@ help:
 	@echo "EMI CAR Validation test suite"
 	@echo ""
 	@echo "Targets:"	
-	@echo "   test_detailed      	--  run samples against schema"
-	@echo "   test_aggregated      	--  run samples against schema"
-	@echo "   testclean 		--  remove generated files"
-	@echo "   clean     		--  remove generated files and old backups"
-	@echo "   release   		--  create a tar.gz file from current repository"
+	@echo "   test			--  run samples against schema"
+	@echo "   test_detailed	--  run detailed samples against schema"
+	@echo "   test_aggregated	--  run aggregated samples against schema"
+	@echo "   testclean		--  remove generated files"
+	@echo "   clean		--  remove generated files and old backups"
+	@echo "   release		--  create a tar.gz file from current repository"
+	@echo ""
+	@echo " Use make DETAILED_DIRS=<directory> to specify detailed records directory"
+	@echo " Use make AGGREGATED_DIRS=<directory> to specify aggregated records directory"
+	@echo " Record dirs can also be specified with the aggregatedDir.conf \n  and detailedDir.conf files, one dir per line "
 
 test: test_detailed test_aggregated
 
@@ -55,5 +60,5 @@ $(release_filename:%=%.gz) : $(release_filename)
 
 
 $(release_filename): distclean
-	tar -cf $@ --transform="s,\(.*\),starval-$(VERSION)/\1," *
+	tar -cf $@ *
 
