@@ -1,6 +1,8 @@
+DETAILED_CONF=./detailedDir.conf
+DETAILED_DIRS := $(shell cat $(DETAILED_CONF)) 
+DETAILED_SAMPLES := $(foreach dir,$(DETAILED_DIRS),$(wildcard $(dir)/*.xml) $(wildcard $(dir)/*.xml.gz))
+DETAILED_VALIDATED = $(DETAILED_SAMPLES:%=%.detailed.ok)
 
-ALL_SAMPLES := $(wildcard *.xml) $(wildcard *.xml.gz)
-ALL_VALIDATED = $(ALL_SAMPLES:%=%.detailed.ok) $(ALL_SAMPLES:%=%.aggregated.ok)
 VERSION = $(shell cat VERSION)
 CAR_XSD_FORM = car_v1.2.xsd
 CAR_XSD_AGGREGATED_FORM = ar_aggregated_v1.2.xsd
@@ -10,25 +12,25 @@ help:
 	@echo "EMI CAR Validation test suite"
 	@echo ""
 	@echo "Targets:"	
-	@echo "   test      --  run samples against schema"
-	@echo "   testclean --  remove generated files"
-	@echo "   clean     --  remove generated files and old backups"
-	@echo "   release   --  create a tar.gz file from current repository"
+	@echo "   test_detailed      	--  run samples against schema"
+	@echo "   testclean 		--  remove generated files"
+	@echo "   clean     		--  remove generated files and old backups"
+	@echo "   release   		--  create a tar.gz file from current repository"
 
-test: $(ALL_VALIDATED)
+test_detailed: $(DETAILED_VALIDATED)
 
 %.detailed.ok : % $(CAR_XSD_FORM)
-	@( xmllint --noout --schema $(CAR_XSD_FORM) $<  ) && touch $@ && ls *.detailed.ok
+	@( xmllint --noout --schema $(CAR_XSD_FORM) $<  ) && touch $@
 
 %.aggregated.ok : % $(CAR_XSD_FORM)
-	@( xmllint --noout --schema $(CAR_XSD_AGGREGATED_FORM) $< ) && touch $@ && ls *.aggregated.ok
+	@( xmllint --noout --schema $(CAR_XSD_AGGREGATED_FORM) $< ) && touch $@
 
-testclean:
-	rm -f $(ALL_VALIDATED)
+detailedclean:
+	rm -f $(DETAILED_VALIDATED)
 
 distclean: clean
 
-clean: testclean
+clean: detailedclean
 	rm -f *~ *.bak
 
 release: $(release_filename:%=%.gz)
