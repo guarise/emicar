@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aur:SummaryRecord xmlns:aur="http://eu-emi.eu/namespaces/2012/11/aggregatedcomputerecord" xmlns:urf="http://eu-emi.eu/namespaces/2012/11/computerecord" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://eu-emi.eu/namespaces/2012/11/aggregatedcomputerecord ../org.glite.dgas_B_4_0_0/config-consumers/car_aggregated_v1.2.xsd ">
   <aur:Site urf:type="gocdb">aur:Site</aur:Site>
-  <aur:Month>0</aur:Month>
-  <aur:Year>0</aur:Year>
+  <aur:Month>4</aur:Month>
+  <aur:Year>1975</aur:Year>
   <aur:UserIdentity>
     <urf:GlobalUserName urf:type="opensslCompat">urf:GlobalUserName</urf:GlobalUserName>
     <urf:Group>urf:Group</urf:Group>
     <urf:GroupAttribute urf:type="">urf:GroupAttribute</urf:GroupAttribute>
   </aur:UserIdentity>
-  <aur:MachineName urf:description="">aur:MachineName</aur:MachineName>
+  <aur:MachineName urf:description="">myWonderfulSite</aur:MachineName>
   <aur:SubmitHost>aur:SubmitHost</aur:SubmitHost>
-  <aur:Host primary="true" urf:description="">aur:Host</aur:Host>
+  <aur:Host primary="true" urf:description="">host.domain</aur:Host>
   <aur:Queue urf:description="execution">aur:Queue</aur:Queue>
   <aur:Infrastructure urf:description="" urf:type="grid"/>
   <aur:Middleware urf:description="" urf:name="" urf:version="">aur:Middleware</aur:Middleware>

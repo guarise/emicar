@@ -38,9 +38,12 @@ test_aggregated: $(AGGREGATED_VALIDATED)
 detailedclean:
 	rm -f $(DETAILED_VALIDATED)
 
+aggregatedclean:
+	rm -f $(AGGREGATED_VALIDATED)
+
 distclean: clean
 
-clean: detailedclean
+clean: detailedclean aggregatedclean
 	rm -f *~ *.bak
 
 release: $(release_filename:%=%.gz)
