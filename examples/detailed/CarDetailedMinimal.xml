@@ -14,7 +14,7 @@
   <urf:ServiceLevel urf:type="token">0.0</urf:ServiceLevel>
   <urf:EndTime>2001-12-31T12:00:00</urf:EndTime>
   <urf:StartTime>2001-12-31T12:00:00</urf:StartTime>
-  <urf:MachineName>urf:MachineName</urf:MachineName>
+  <urf:MachineName>MachineName</urf:MachineName>
   <urf:Queue>urf:Queue</urf:Queue>
   <urf:Site>urf:Site</urf:Site>
 </urf:UsageRecord>
