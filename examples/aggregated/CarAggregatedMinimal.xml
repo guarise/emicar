@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aur:SummaryRecord xmlns:aur="http://eu-emi.eu/namespaces/2012/11/aggregatedcomputerecord" xmlns:urf="http://eu-emi.eu/namespaces/2012/11/computerecord" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://eu-emi.eu/namespaces/2012/11/aggregatedcomputerecord ../../../org.glite.dgas_B_4_0_0/config-consumers/car_aggregated_v1.2.xsd ">
+  <aur:Site>aur:Site</aur:Site>
+  <aur:Month>4</aur:Month>
+  <aur:Year>2007</aur:Year>
+  <aur:UserIdentity/>
+  <aur:Infrastructure/>
+  <aur:EarliestEndTime>2001-12-31T12:00:00</aur:EarliestEndTime>
+  <aur:LatestEndTime>2001-12-31T12:00:00</aur:LatestEndTime>
+  <aur:WallDuration>P1D</aur:WallDuration>
+  <aur:CpuDuration>P1D</aur:CpuDuration>
+  <aur:ServiceLevel urf:type="token">0.0</aur:ServiceLevel>
+  <aur:NumberOfJobs>0</aur:NumberOfJobs>
+</aur:SummaryRecord>
