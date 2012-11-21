@@ -1,6 +1,6 @@
 
 ALL_SAMPLES := $(wildcard *.xml) $(wildcard *.xml.gz)
-ALL_VALIDATED = $(ALL_SAMPLES:%=%.ok)
+ALL_VALIDATED = $(ALL_SAMPLES:%=%.detailed.ok) $(ALL_SAMPLES:%=%.aggregated.ok)
 VERSION = $(shell cat VERSION)
 CAR_XSD_FORM = car_v1.2.xsd
 CAR_XSD_AGGREGATED_FORM = ar_aggregated_v1.2.xsd
@@ -17,8 +17,11 @@ help:
 
 test: $(ALL_VALIDATED)
 
-%.ok : % $(CAR_XSD_FORM)
-	@( xmllint --noout --schema $(CAR_XSD_FORM) $< || xmllint --noout --schema $(CAR_XSD_AGGREGATED_FORM) $< ) && touch $@
+%.detailed.ok : % $(CAR_XSD_FORM)
+	@( xmllint --noout --schema $(CAR_XSD_FORM) $<  ) && touch $@ && ls *.detailed.ok
+
+%.aggregated.ok : % $(CAR_XSD_FORM)
+	@( xmllint --noout --schema $(CAR_XSD_AGGREGATED_FORM) $< ) && touch $@ && ls *.aggregated.ok
 
 testclean:
 	rm -f $(ALL_VALIDATED)
